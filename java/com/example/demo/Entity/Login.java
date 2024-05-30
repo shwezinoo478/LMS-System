@@ -3,38 +3,37 @@ package com.example.demo.Entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
 @Entity
 public class Login {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // This line specifies auto-increment
 	int login_id;
 	@Column(nullable = false)
-	private String short_name;
+	private String email;
 	@Column(nullable = false)
 	private String password;
-	@Column(nullable = false)
-	private String perright;
 	@Column(nullable = false)
 	private int user_id;
 
 	
 	public Login() {
 		this.login_id = 0;
-		this.short_name = "";
+		this.email = "";
 		this.password = "";
-		this.perright = "";
 		this.user_id = 0;
 	}
 	
 	
-	public Login(int login_id, String short_name, String password, String perright, int user_id) {
+	public Login(int login_id, String email, String password,  int user_id) {
 		super();
 		this.login_id = login_id;
-		this.short_name = short_name;
+		this.email = email;
 		this.password = password;
-		this.perright = perright;
 		this.user_id = user_id;
 	}
 
@@ -45,23 +44,17 @@ public class Login {
 	public void setLogin_id(int login_id) {
 		this.login_id = login_id;
 	}
-	public String getShort_name() {
-		return short_name;
+	public String getEmail() {
+		return email;
 	}
-	public void setShort_name(String short_name) {
-		this.short_name = short_name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getPerRight() {
-		return perright;
-	}
-	public void setPerRight(String perRight) {
-		this.perright = perRight;
 	}
 	public int getUser_id() {
 		return user_id;

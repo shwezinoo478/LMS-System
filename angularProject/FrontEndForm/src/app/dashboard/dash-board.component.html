@@ -1,0 +1,98 @@
+
+<!-- <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script> -->
+<style>
+  .profile-pic{
+    display: inline-block;
+    vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+    border-radius: 50%;
+  }
+  .profile-pic img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark " >
+    <div class="container-fluid bg-gray">
+      <a class="navbar-brand" routerLink="/dashboard" >  </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/dashboard" >Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLink="/dashboard" id="navbarDropdownone" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Course
+              </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownone">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdowntwo" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Announcement
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdowntwo">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item ms-5">
+            <form class="d-flex ">
+                <input class="form-control col-md-6" type="search"  placeholder="Search" aria-label="Search" style="max-width: 100%;">
+                
+            </form>
+          </li>
+          
+        </ul>
+        
+        <div >
+          <div class="dropdown-toggle"  id="navbarDropdownthree" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #a39999;">
+            <div class="profile-pic">
+                <img src="https://source.unsplash.com/250x250?girl" alt="Profile Picture">
+            </div>
+          <!-- You can also use icon as follows: -->
+          <!--  <i class="fas fa-user"></i> -->
+          </div>
+          
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownthree" style="margin-left: auto;right: 3px;width: 100px;" >
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sliders-h fa-fw"></i> Account</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-cog fa-fw"></i> Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-fw"></i> Log Out</a></li></ul>
+          
+        </div>
+        
+        
+      </div>
+    </div>
+</nav>
+<div class="container">
+  <div class="row row-cols-auto" >  
+    <div class="col" style="margin-top: 10px; " *ngFor="let course of courses">
+      <div class="card" style="width: 18rem; ">
+        <img [src]="courseImgPath + course.image" class="card-img-top" [alt]="course.image"
+        style="height: 170px;">
+        <div class="card-body">
+          <h5 class="card-title">{{course.name}}</h5>
+          <p class="card-text text-truncate" style="max-width: auto;">{{course.description}}</p>
+          <a href="" class="card-link">More Details </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

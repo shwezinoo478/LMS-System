@@ -1,58 +1,63 @@
 package com.example.demo.Controller;
-
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.stereotype.Service;
 import com.example.demo.Entity.Login;
-import com.example.demo.serviceImplementation.*;
+import com.example.demo.Repository.LoginRepo;
+import com.example.demo.Service.LoginService;
 
 
-@RestController
-//@ComponentScan("com.example")
-@RequestMapping("/login")
-public class LoginController {
-	@Autowired LoginServiceImplement loginService;
-	 
-	@GetMapping("/test")
-	public String test() {
-		return "hi";
+@Service
+public class LoginController implements LoginService{
+	
+	@Autowired LoginRepo loginRepo ;
+	
+
+	@Override
+	public Boolean CreateLogin(Login login) {
+		loginRepo.save(login);
+		return true;
 	}
-	
-	@PostMapping("/process2")
-    public String process(@RequestBody Map<String, String> payload) throws Exception {              //Map<String, String>[] payload when receive an array
-//    	for (int i=0;i<payload.length;i++) {
-//			System.out.println(payload[i].get("email"));
-//			System.out.println(payload[i].get("password"));
-//    	}
-		String username = payload.get("username");
-		String password = payload.get("password");
-	   
-		List<Login> listLogin =  loginService.GetAllLogin();
-		String isAuthorzie = "";
-		for(Login login : listLogin) {
-			if(login.getShort_name().equals(username) && login.getPassword().equals(password)) {
-				isAuthorzie = "okay";
-				break;
-			}
-			else if(login.getShort_name().equals(username)) {
-				isAuthorzie = "Invalid Password ";
-			}
-			else {
-				isAuthorzie = "Invalid Username ";
-			}
-			
-		} 		
-		return isAuthorzie;
+
+
+	@Override
+	public Login GetById(int loginId) {
+		// TODO Auto-generated method stub
+		Login login = new Login();
+		login = loginRepo.findById(loginId).orElse(null);
+		return login;
+	}
+
+	@Override
+	public List<Login> GetAllLogin() {
+		// TODO Auto-generated method stub
+		List<Login> listLogin = loginRepo.findAll();
+		return listLogin;
+	}
+
+	@Override
+	public Boolean UpdateLogin(Login login) {
+		// TODO Auto-generated method stub
+		loginRepo.save(login);
+		return true;
+	}
+
+	@Override
+	public Boolean DeleteLogin(int loginId) {
+		// TODO Auto-generated method stub
+		loginRepo.deleteById(loginId);
+		return true;
+	}
+
+
+	@Override
+	public Login getByEmail(String email) {
 		
-    }
+		return loginRepo.getByEmail(email);
+	}
+
 	
 	
-	
+
 }

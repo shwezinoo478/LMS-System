@@ -1,0 +1,72 @@
+
+    
+
+<style>
+    .circle{
+        font-size: 4em;
+        color: #303030;
+        border: 2px solid #303030;
+        border-radius: 50%;
+        padding: 0.5em;
+        transition: all .5s ease;
+	}
+</style>
+
+<div>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-1 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-2 col-md-3 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body  text-center">
+      
+                    <div class="md-5 mt-md-4 pb-5">
+      
+                        <h2 class="fw-bold  text-uppercase">Register</h2>
+                        
+                        <p class="text-white-50 mb-4">Please enter your information to Register!</p>  
+                        <div class="alert alert-danger" *ngIf="err_Register_msg">
+                            This email is already register! Please Login <a (click)="goLoginClick()">here</a>
+                        </div>                  
+                        <div class="form-outline form-white mb-4">
+                            <input  type="text" class="form-control form-control-lg" placeholder="Enter your name"  name="username"  [(ngModel)]="username" (blur)="validateFormInput()" required >
+                        </div>
+        
+                        <div class="form-outline form-white mb-4">
+                            <input type="email"  class="form-control form-control-lg" placeholder="Enter your Email" [(ngModel)]="email_txt" (blur)="validateFormInput()" required>
+                        </div>
+                        <span *ngIf="err_pass_msg!=''" class="alert alert-danger mb-4">{{err_pass_msg}}</span>
+                        <div class="form-outline form-white mb-4">
+                            <input type="password"  class="form-control form-control-lg" placeholder="Enter your Password" [(ngModel)]="password_txt" (blur) ="OnCheckPassword()" required>
+                        </div>
+
+                        <div class="form-outline form-white mb-4">
+                            <input type="password"  class="form-control form-control-lg" placeholder="Enter your Password Again" [(ngModel)]="password_chk" (blur) ="OnCheckPassword()" required>
+                        </div>
+                        <div >
+                            <div class=" mb-4 form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender_option" id="radioMale" value="male"  [(ngModel)]="gender"  >
+                                <label class="form-check-label" for="radioMale">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender_option" id="radioFemale" value="female" [(ngModel)]="gender">
+                                <label class="form-check-label" for="radioFemale">Female</label>
+                            </div>
+                        </div>
+                        <span *ngIf="err_message!=''" class="alert alert-danger mb-4">{{err_message}}</span><br>
+                        <button class="btn btn-outline-light btn-lg px-5" type="submit"  [disabled]="(err_pass_msg !== '')" (click)="goRegister()">Submit</button>
+                  
+      
+                    </div>
+       
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+   
+
+</div>
+
+
